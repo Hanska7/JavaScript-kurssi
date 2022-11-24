@@ -487,6 +487,8 @@ function Lataa() {
 
         kategoria = kategoria.replaceAll('Ei peru', "")
         kategoria = kategoria.replaceAll(',', "")
+        kategoria = kategoria.replaceAll('Ei', "")
+        
 
         
 
