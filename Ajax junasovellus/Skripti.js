@@ -488,8 +488,11 @@ function Lataa() {
         kategoria = kategoria.replaceAll('Ei peru', "")
         kategoria = kategoria.replaceAll(',', "")
 
-        var löytö = juna+'\n'+päivä+'\n'+tyyppi+'\n'+kategoria+'\n'+peruttu+'\n'+asema+'\n'+lähtö+'\n'+lähtöaika
+        
 
+        var löytö = juna+'\n'+päivä+'\n'+tyyppi+'\n'+kategoria+'\n'+peruttu+'\n'+asema+'\n'+lähtö+'\n'+lähtöaika
+        
+        var löytö= löytö.replaceAll(',', "")
         
 
 
