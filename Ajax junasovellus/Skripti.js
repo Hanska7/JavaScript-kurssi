@@ -1,17 +1,15 @@
 
 var kerta = 0
-
+//Alustetaan muuttujat eli läpimenokerta
 
 console.log('Start')
 
     var alku = document.createElement('div');
-    /* var teksti = document.createTextNode('TÄMÄ ON KRIITTINEN OSA DIVIÄ') */
-    
+        
     alku.setAttribute('id', 'laatikko');
     
     alku.innerText = 'Tämä Appi hakee napin painalluksella listaan uuden junan päivämäärän nykyhetken kellonajan perusteella';
-    /* alku.appendChild(teksti); */
-
+    
     document.body.appendChild(alku);
 
     var yksikkö = document.createElement('h1');
@@ -25,6 +23,7 @@ console.log('Start')
     kaksikko.innerText = 'Tähän toka otsikko';
         
     yksikkö.appendChild(kaksikko);
+    
 
     var nappi = document.createElement('button');
     nappi.setAttribute('id', 'nappula');
@@ -42,14 +41,13 @@ console.log('Start')
     var kenttä3 = document.createElement('input')
     kenttä3.value = 'Anna vuosi'
 
-
     kaksikko.appendChild(lista)
 
     var alalista = document.createElement('li');
     alalista.setAttribute('id', 'tulos');
     lista.appendChild(alalista);
 
-
+//Luodaan HTML rakenne dynaamisesti
 
 
     lista.appendChild(kenttä1);
@@ -60,10 +58,13 @@ console.log('Start')
 
     document.getElementById('nappula').addEventListener('click', Avaa);
     
+//Lisätään Avaa funktio nappiin dynaamisesti
+
 
 console.log(localStorage)
 
 Hakija()
+//Ajetaan funktio Hakija joka luo uuden Divin johon tulee käsiteltävä raakateksti sivulta kun se on haettu
 
 function Avaa() {
 
@@ -74,7 +75,7 @@ function Avaa() {
     while (alalista.lastElementChild) {
 
         alalista.removeChild(alalista.lastElementChild)
-    
+        //Tyhjennetään edellinen haku listasta alta pois
     }}
 
 
@@ -83,9 +84,10 @@ function Avaa() {
     localStorage.setItem(0, kenttä1.value);
     localStorage.setItem(1, kenttä2.value);
     localStorage.setItem(2, kenttä3.value);
-    
+    //Haetaan syötetyt päivämäärän arvot
     
     var kohta = localStorage.getItem(numero);
+    //Aloitetaan syötteen vertailu haluttuun
 
     console.log(kohta)
     console.log(kohta.length)
@@ -103,7 +105,8 @@ function Avaa() {
         console.log(esine)
     
         esine.innerText = (kohta);
-    
+        //Oikea syöte lisätään listaan
+
         alalista.appendChild(esine);
         var numero = numero+1
         console.log(numero)
@@ -133,7 +136,9 @@ function Avaa() {
             console.log(esine)
     
             esine.innerText = (kohta);
-    
+            //Oikea syöte lisätään listaan
+
+
             alalista.appendChild(esine);
             var numero = numero+1
             console.log(numero)
@@ -160,6 +165,7 @@ function Avaa() {
                 console.log(esine)
     
                 esine.innerText = (kohta);
+                //Oikea syöte lisätään listaan
     
                 alalista.appendChild(esine);
                 var numero = numero+1
@@ -184,18 +190,22 @@ let sankari = new XMLHttpRequest();
 let päivä = localStorage.getItem(0);
 let kuukausi = localStorage.getItem(1);
 let vuosi = localStorage.getItem(2);
+//Oikea syöte haetaan päivämääräksi
+
 
 var pvm = (vuosi+"-"+kuukausi+"-"+päivä);
 console.log(pvm);
 
 
-// Ajax kutsu
+
 
 
 
 var osoite = ("https://rata.digitraffic.fi/api/v1/schedules?departure_date="+pvm);
 sankari.open("GET", osoite, true);
 sankari.send();
+//Ajax kutsu sivustolle päivämäärän mukaan
+
 
 
 sankari.onreadystatechange = function() {
@@ -209,17 +219,18 @@ sankari.onreadystatechange = function() {
     
 } else if (sankari.readyState == 4 && sankari.status == 400) {
     alert('Huono päivämäärä, laita parempi')
+    //Tarkistetaan väärän päivämäärän seuraukset
 }}
 
 
 var vaste = document.getElementById("myDiv").innerHTML
-
+//Päivitetään uusi divi muokatulla tekstillä
 
 
 
 
 function Lataa() {
-
+//Ajetaan muokkaaja
     
     
 
@@ -227,7 +238,8 @@ function Lataa() {
         
         var teksti = sankari.responseText
         console.log('Eka kerta')
-    
+        //Otetaan raaka syöte ekalla kerralla
+
     }
 
         else { 
@@ -237,12 +249,10 @@ function Lataa() {
             teksti = vaste
             console.log('On tallennettu!')
             console.log(teksti)
-
+            //Varmistetaan että muokattu syöte saadaan tulevaisuuteen
         }
 
     
-
-
 
 
         teksti = teksti.replaceAll("[", "")
@@ -251,16 +261,19 @@ function Lataa() {
         teksti = teksti.replaceAll("}", "")
         teksti = teksti.replaceAll('"', "")
         teksti = teksti.replaceAll(':', "")
-        
+        //Siistitään syötettä        
 
         var paikka = kerta+1
         console.log(paikka)
 
 
-
         /* teksti = teksti.replaceAll("trainNumber"+(paikka), "Junanumero-"+(paikka)) */
                 
         /* teksti = teksti.replaceAll("trainNumber"+((paikka), "")) */
+
+        //Aiempi versio haki junan junanumero kerrallaan syötteestä
+
+
         
         teksti = teksti.replaceAll("trainNumber", "Junanumero-")
         
@@ -332,10 +345,10 @@ function Lataa() {
 
         
         
-            // replaceAll tai muuta suomeksija loppuun -
-            // Poista myös Junanumero-kerta ekan replacen jälkeen
+        // replaceAll tai muuta suomeksi ja loppuun "-""
+        // Poista myös Junanumero-kerta ekan replacen jälkeen
         
-        
+        //Poistetaan ylimääräisiä muuttujia
         
 
 
@@ -343,9 +356,9 @@ function Lataa() {
 
         //Haetaan nykyhetki
         var nykyHetki = new Date();
-        //Jostain syystä "nykyhetki" on 1 kk taaksepäin, joten lisätään kuukauteen 1
+        
         nykyHetki.setHours(nykyHetki.getHours());
-        //Lisätään myös päivään 1, jotta nähdään tänään esitykseen tulleet oikein
+        
         nykyHetki.setUTCMinutes(nykyHetki.getMinutes());
         
         var tunnit = nykyHetki.getHours()
@@ -357,19 +370,23 @@ function Lataa() {
         if (minuutit < 10) {
             minuutit = "0" + minuutit;
         }
+        
+        //Lisätään 0, jotta formaatti on oikein
 
 
-
-        //Määritellään vuosi, kk ja pv samaan järjestykseen datasta löytyvän päivämäärän kanssa...
+        //Määritellään samaan järjestykseen datasta löytyvän päivämäärän kanssa
         var nyt = nykyHetki.getHours() + "/" + nykyHetki.getMinutes() + "/" + nykyHetki.getSeconds();
-        //...poistetaan välistä turhat merkit...
+        
+        
         var nytheti = nyt.replaceAll("/", "");
 
         
         nytheti = nytheti.substring(0,4)
 
+
         var haku = 'Lähtöaika-'+pvm+"T"+nytheti
         
+
         eka = haku.slice(0,10)
         toka = haku.slice(20)
         haku = eka.concat("", toka)
@@ -379,10 +396,12 @@ function Lataa() {
 
         var etsi = teksti.search(haku)
         var teksti = teksti.substring(etsi)
-        
         console.log('Löydetty nykyhetki kohdasta '+etsi)
         console.log(teksti)
-        
+        //Katkaistaan syöte heti alkuun nykyisen kellonajan kohdalta
+
+
+
         var ajoitus = teksti.substring(0, 27)
         var meno = ajoitus.slice(0, 10)
         var aika = ajoitus.slice(11, 15)
@@ -391,13 +410,12 @@ function Lataa() {
 
         
         
-
-
         document.getElementById("myDiv").innerHTML = teksti;
+        //Näytetään tulevat junat syötteestä
 
         teksti = teksti.replaceAll("trainNumber", "Junanumero-")
         var etsi = teksti.search("Junanumero-")
-
+        //Aloitetaan junan kohdalta
 
         console.log('Junan alku')
         console.log(etsi)
@@ -450,17 +468,18 @@ function Lataa() {
         var teksti = teksti.substring(etsi)
 
 
-/*         console.log(etsi)
-        console.log(teksti) */
+
         console.log('Leikkaa aika nyt')
 
         if (etsi == -1) {
 
             alert('Missattu lähtöaika, rakenne hajoaa')
+            //Varmistetaan että syötteessä on juna joka vastaa minuutin tarkkuudella nykyhetkeä tai rakenne hajoaa
 
         }
 
         else {console.log('Hyvä lähtöaika, rakenne toimii')}
+        //Nykyminuutille löytyy juna lähes aina
 
 
         var ajoitus = teksti.substring(0, 27)
@@ -496,7 +515,7 @@ function Lataa() {
         
         var löytö= löytö.replaceAll(',', "")
         
-
+        //Poistetaan ylimääräisiä merkkejä haetusta syötteestä
 
         /* teksti = teksti.replace(",,Junatyyppi-", "Junatyyppi-") */
 
@@ -509,16 +528,8 @@ function Lataa() {
 
         console.log('Loppukohta')
 
-
-
-        
-
+        //Merkataan haku valmiiksi
     
-    
-
-
-        
-
         var esine2 = document.createElement('li');
         esine2.setAttribute('id', kerta)
         esine2.innerText = (löytö);
@@ -526,7 +537,7 @@ function Lataa() {
         
         kerta = kerta + 1
 
-
+        //Esitellään tulos
         
         
 
@@ -548,7 +559,7 @@ function Lataa() {
         console.log(teksti)
         document.getElementById("myDiv").innerHTML = teksti;
 
-
+        //Esitellään syöte seuraavan junan kohdalta 
         
         
 
@@ -569,7 +580,7 @@ document.body.appendChild(vaste);
 alert('Odota 10 sekuntia')
 }
 
-
+//Tämä funktio lataa ja näyttää tulosten alla käsiteltävän syötteen
 
 
     
