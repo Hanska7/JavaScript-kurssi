@@ -298,7 +298,7 @@ function Lataa() {
         teksti = teksti.replaceAll('typeARRIVAL', "Saapuu")
         
         teksti = teksti.replaceAll('cancelledfalse', "Ei peruttu")
-
+        teksti = teksti.replaceAll('cancelledtrue', "Peruttu")
         
 
         teksti = teksti.replaceAll('trainStoppingtrue', "Pysähtyy")
@@ -404,8 +404,8 @@ function Lataa() {
 
         
         var teksti = teksti.substring(etsi)
-        var juna = teksti.substring(0, 13)
-
+        var juna = teksti.substring(0, 16)
+        
 
         var etsi = teksti.search('Lähtöpäivä-')
         var teksti = teksti.substring(etsi)
@@ -423,9 +423,17 @@ function Lataa() {
         var kategoria = teksti.substring(0, 27)
 
 
+
         var etsi = teksti.search('Ei peruttu')
         var teksti = teksti.substring(etsi)
         var peruttu = teksti.substring(0, 10)
+
+
+
+        /* var etsi = teksti.search('Peruttu')
+        var teksti = teksti.substring(etsi)
+        var peruttu = teksti.substring(0, 7) */
+
 
 
         var etsi = teksti.search('ASEMA-')
@@ -469,8 +477,16 @@ function Lataa() {
         lähtöaika = lähtöaika.substring(0,12)+"."+lähtöaika.substring(12)
         console.log(lähtöaika)
         
+        
+        juna = juna.replaceAll(',', "")
+        juna = juna.replaceAll("Läh","")
+        juna = juna.replaceAll("A","")
+        juna = juna.replaceAll("S","")
+        juna = juna.replaceAll("E","")
 
 
+        kategoria = kategoria.replaceAll('Ei peru', "")
+        kategoria = kategoria.replaceAll(',', "")
 
         var löytö = juna+'\n'+päivä+'\n'+tyyppi+'\n'+kategoria+'\n'+peruttu+'\n'+asema+'\n'+lähtö+'\n'+lähtöaika
 
